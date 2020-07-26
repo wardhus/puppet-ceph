@@ -147,8 +147,11 @@ not on ${::operatingsystem}, which can lead to packaging issues.")
         if ((($::operatingsystem == 'RedHat' or $::operatingsystem == 'CentOS') and (versioncmp($::operatingsystemmajrelease, '7') < 0))
               or ($::operatingsystem == 'Fedora' and (versioncmp($::operatingsystemmajrelease, '19') < 0))) {
           $el = '6'
-        } else {
+        } elsif ((($::operatingsystem == 'RedHat' or $::operatingsystem == 'CentOS') and (versioncmp($::operatingsystemmajrelease, '8') < 0))
+              or ($::operatingsystem == 'Fedora' and (versioncmp($::operatingsystemmajrelease, '20') < 0))) { {
           $el = '7'
+        } else {
+          $el = '8'
         }
 
         Yumrepo {
@@ -201,8 +204,11 @@ not on ${::operatingsystem}, which can lead to packaging issues.")
         }
 
         # prefer ceph.com repos over EPEL
-        package { 'yum-plugin-priorities':
-          ensure => present,
+        # dnf hs priorities build-in
+        if ($el != '8') {
+          package { 'yum-plugin-priorities':
+            ensure => present,
+          }
         }
       }
 
