@@ -148,7 +148,7 @@ not on ${::operatingsystem}, which can lead to packaging issues.")
               or ($::operatingsystem == 'Fedora' and (versioncmp($::operatingsystemmajrelease, '19') < 0))) {
           $el = '6'
         } elsif ((($::operatingsystem == 'RedHat' or $::operatingsystem == 'CentOS') and (versioncmp($::operatingsystemmajrelease, '8') < 0))
-              or ($::operatingsystem == 'Fedora' and (versioncmp($::operatingsystemmajrelease, '20') < 0))) { {
+              or ($::operatingsystem == 'Fedora' and (versioncmp($::operatingsystemmajrelease, '20') < 0))) {
           $el = '7'
         } else {
           $el = '8'
